@@ -14,10 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget,QFrame
-{
-background-color: #1A1A1A;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
@@ -36,7 +33,7 @@ background-color: #1A1A1A;
     <number>0</number>
    </property>
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="frameBackground">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -64,10 +61,13 @@ background-color: #1A1A1A;
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Preferred</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>198</height>
+          <height>100</height>
          </size>
         </property>
        </spacer>
@@ -140,7 +140,7 @@ background-color: #1A1A1A;
   <customwidget>
    <class>BannaControl</class>
    <extends>QWidget</extends>
-   <header location="global">maincontent\controlwidget\bannacontrol\bannacontrol.h</header>
+   <header location="global">maincontent/controlwidget/bannacontrol/bannacontrol.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

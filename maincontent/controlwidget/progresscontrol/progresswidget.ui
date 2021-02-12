@@ -14,10 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget
-{
-background-color: #1A1A1A;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -86,7 +83,7 @@ background-color: #1A1A1A;
   <customwidget>
    <class>ProgressControl</class>
    <extends>QWidget</extends>
-   <header location="global">maincontent\controlwidget\progresscontrol\progresscontrol.h</header>
+   <header location="global">maincontent/controlwidget/progresscontrol/progresscontrol.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

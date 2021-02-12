@@ -1,4 +1,10 @@
-﻿#include "controltreewidget.h"
+﻿/*****************************************
+ * 作者: YYC
+ * 日期: 2020-04-26
+ * 功能：界面左侧的TreeWidget，用来列出当前
+ * 已有的界面，通过点击显示对应的Tab页
+ * ***************************************/
+#include "controltreewidget.h"
 #include "ui_controltreewidget.h"
 
 /******************   构造函数     *********************/
@@ -33,14 +39,9 @@ void ControlTreeWidget::initValue()
 void ControlTreeWidget::on_treeWidgetMenu_clicked(const QModelIndex &index)
 {
     emit sendShowIndex(WidgetTabType(index.row()));
-}
-
-/******************   点击对应页显示对应项     *********************/
-void ControlTreeWidget::receiveShowCurrentTab(WidgetTabType widgetTabType)
-{
-    if (widgetTabType < ui->treeWidgetMenu->topLevelItemCount())
+    QTreeWidgetItem *treeWidgetItem = ui->treeWidgetMenu->topLevelItem(index.row());
+    if (nullptr != treeWidgetItem)
     {
-        QTreeWidgetItem *treeWidgetItem = ui->treeWidgetMenu->topLevelItem(widgetTabType);
         ui->treeWidgetMenu->clearSelection();
         treeWidgetItem->setSelected(true);
     }

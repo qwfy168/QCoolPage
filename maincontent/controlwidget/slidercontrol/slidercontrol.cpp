@@ -1,3 +1,8 @@
+/*****************************************
+ * 作者: YYC
+ * 日期: 2020-04-26
+ * 功能：移动进度
+ * ***************************************/
 #include "slidercontrol.h"
 #include "ui_slidercontrol.h"
 #include <QHBoxLayout>
@@ -7,19 +12,24 @@
 #include "globaldef.hpp"
 #include "numberanimation/numberanimation.h"
 
-SliderControl::SliderControl(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SliderControl)
+// 构造函数
+SliderControl::SliderControl(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::SliderControl)
+    , m_currentIndex(-1)
+    , m_currentLineWidth(0)
 {
     ui->setupUi(this);
     this->initValue();
 }
 
+// 析构函数
 SliderControl::~SliderControl()
 {
     delete ui;
 }
 
+// 初始化数据
 void SliderControl::initValue()
 {
     ui->frameSlider->installEventFilter(this);
@@ -134,7 +144,7 @@ void SliderControl::calculateLineWidth()
     int centerStartX = centeXList.at(MIDDLE_LABLE);
     int centerEndX = centeXList.at(m_currentIndex);
     double currentLineWidth = centerEndX - centerStartX;
-    m_numberAnimation->start(lastLineWidth, currentLineWidth);
+    m_numberAnimation->startAnimation(lastLineWidth, currentLineWidth);
 }
 
 // 搜集中心点的坐标存入MAP
@@ -148,6 +158,7 @@ void SliderControl::collectCentPoint()
     }
 }
 
+// 事件过滤
 bool SliderControl::eventFilter(QObject *watched, QEvent *event)
 {
     if (watched == ui->frameSlider && event->type() == QEvent::Paint)
@@ -165,6 +176,7 @@ bool SliderControl::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
+// 点击左侧按钮
 void SliderControl::on_pushButtonLeft_clicked()
 {
     if (this->m_currentIndex > 0)
@@ -175,6 +187,7 @@ void SliderControl::on_pushButtonLeft_clicked()
     }
 }
 
+// 点击右侧按钮
 void SliderControl::on_pushButtonRight_clicked()
 {
     if (this->m_currentIndex < LABEL_NUMBER - 1)
@@ -183,11 +196,4 @@ void SliderControl::on_pushButtonRight_clicked()
         this->setupSelectCircle();
         this->calculateLineWidth();
     }
-}
-
-void SliderControl::receiveToNormal()
-{
-    this->m_currentIndex = MIDDLE_LABLE;
-    this->setupSelectCircle();
-    this->calculateLineWidth();
 }

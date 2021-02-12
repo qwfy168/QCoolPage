@@ -1,16 +1,16 @@
 ﻿#include "mainwindow.h"
 #include <globaldef.hpp>
 #include <QApplication>
+#include "screen/mainobject.h"
 
 
 int main(int argc, char *argv[])
 {
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication a(argc, argv);
 
-    MainWindow mainwindow;
-    LOADQSS(GlobalSpace::BLACK_QSS_FILE_PATH);
-    mainwindow.showNormal();
+    MainObject mainObject;
+    mainObject.setInit();
+    LOADQSS(GlobalSpace::STYLE_QSS_FILE_PATH);
 
     return a.exec();
 }

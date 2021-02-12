@@ -1,4 +1,10 @@
-﻿#include "controltabwidget.h"
+﻿/*****************************************
+ * 作者: YYC
+ * 日期: 2020-04-26
+ * 功能：界面右侧的TabWidget，显示当前已有的
+ * 页面，与TreeWidget相对应
+ * ***************************************/
+#include "controltabwidget.h"
 #include "ui_controltabwidget.h"
 
 /******************   构造函数     *********************/
@@ -19,8 +25,7 @@ ControlTabWidget::~ControlTabWidget()
 /******************   初始化数据     *********************/
 void ControlTabWidget::initValue()
 {
-    ui->tabWidgetControl->setTabsClosable(true);
-    connect(ui->tabWidgetControl, SIGNAL(tabCloseRequested(int)), this, SLOT(closeNowTab(int)));
+    ui->tabWidgetControl->tabBar()->setHidden(true);
 
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(30, 30, 30));
@@ -58,6 +63,13 @@ void ControlTabWidget::initValue()
 
     {
         TabWidgetData tabWidgetData;
+        tabWidgetData.currentWidget = ui->tabList;
+        tabWidgetData.currentTabText = ui->tabWidgetControl->tabText(TAB_LIST);
+        mapTabWidget[TAB_LIST] = tabWidgetData;
+    }
+
+    {
+        TabWidgetData tabWidgetData;
         tabWidgetData.currentWidget = ui->tabPlot;
         tabWidgetData.currentTabText = ui->tabWidgetControl->tabText(TAB_CUSTOM_PLOT);
         mapTabWidget[TAB_CUSTOM_PLOT] = tabWidgetData;
@@ -84,12 +96,20 @@ void ControlTabWidget::initValue()
         tabWidgetData.currentTabText = ui->tabWidgetControl->tabText(TAB_SLIDER);
         mapTabWidget[TAB_SLIDER] = tabWidgetData;
     }
-}
 
-/******************   关闭当前页     *********************/
-void ControlTabWidget::closeNowTab(int index)
-{
-    ui->tabWidgetControl->removeTab(index);
+    {
+        TabWidgetData tabWidgetData;
+        tabWidgetData.currentWidget = ui->tabProcess;
+        tabWidgetData.currentTabText = ui->tabWidgetControl->tabText(TAB_PROCESS);
+        mapTabWidget[TAB_PROCESS] = tabWidgetData;
+    }
+
+    {
+        TabWidgetData tabWidgetData;
+        tabWidgetData.currentWidget = ui->tabOpengl;
+        tabWidgetData.currentTabText = ui->tabWidgetControl->tabText(TAB_OPENGL);
+        mapTabWidget[TAB_OPENGL] = tabWidgetData;
+    }
 }
 
 /******************   点击树形项显示对应Tab页     *********************/
@@ -101,17 +121,4 @@ void ControlTabWidget::receiveShowCurrentTab(WidgetTabType widgetTabType)
         ui->tabWidgetControl->addTab(tabWidgetData.currentWidget, tabWidgetData.currentTabText);
     }
     ui->tabWidgetControl->setCurrentWidget(tabWidgetData.currentWidget);
-}
-
-/******************   点击Tab页显示对应树形项     *********************/
-void ControlTabWidget::on_tabWidgetControl_tabBarClicked(int index)
-{
-    for (auto iter = mapTabWidget.begin(); iter != mapTabWidget.end(); iter++)
-    {
-        QWidget *currentWidget = iter.value().currentWidget;
-        if (currentWidget == ui->tabWidgetControl->widget(index))
-        {
-            emit sendShowIndex(iter.key());
-        }
-    }
 }

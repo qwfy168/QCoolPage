@@ -14,14 +14,15 @@ TEMPLATE = app
 MOC_DIR = $$OUT_PWD/mocfile
 OBJECTS_DIR = $$OUT_PWD/objfile
 UI_DIR = $$OUT_PWD/uifile
+RCC_DIR = $$OUT_PWD/rcfile
 
 
 SOURCES += main.cpp\
         mainwindow.cpp \
     titlebar/maintitlebar.cpp \
     titlebar/titlebar.cpp \
-    maincontent/controltreewidget.cpp \
     maincontent/controltabwidget.cpp \
+    maincontent/controltreewidget.cpp \
     systemtray/systemtray.cpp \
     maincontent/controlwidget/cylindercontrol/cylinderwidget.cpp \
     maincontent/controlwidget/progresscontrol/progresswidget.cpp \
@@ -41,14 +42,29 @@ SOURCES += main.cpp\
     maincontent/controlwidget/tablecontrol/tablewidget.cpp \
     numberanimation/numberanimation.cpp \
     maincontent/controlwidget/slidercontrol/slidercontrol.cpp \
-    maincontent/controlwidget/slidercontrol/sliderwidget.cpp
+    maincontent/controlwidget/slidercontrol/sliderwidget.cpp \
+    maincontent/controlwidget/openglcontrol/cameralibrary.cpp \
+    maincontent/controlwidget/openglcontrol/objectfactory.cpp \
+    maincontent/controlwidget/openglcontrol/shaderlibrary.cpp \
+    maincontent/controlwidget/openglcontrol/texturelibrary.cpp \
+    maincontent/controlwidget/openglcontrol/objectmodel/objectparent.cpp \
+    maincontent/controlwidget/openglcontrol/objectmodel/objectcube.cpp \
+    maincontent/controlwidget/openglcontrol/openglcontrol.cpp \
+    maincontent/controlwidget/openglcontrol/openglwidget.cpp \
+    maincontent/controlwidget/processcontrol/processcontrol.cpp \
+    maincontent/controlwidget/processcontrol/processwidget.cpp \
+    maincontent/controlwidget/listcontrol/listcontrol.cpp \
+    maincontent/controlwidget/listcontrol/listwidget.cpp \
+    screen/mainobject.cpp \
+    screen/splashscreen.cpp
+
 
 HEADERS  += mainwindow.h \
     globaldef.hpp \
     titlebar/maintitlebar.h \
     titlebar/titlebar.h \
-    maincontent/controltreewidget.h \
     maincontent/controltabwidget.h \
+    maincontent/controltreewidget.h \
     systemtray/systemtray.h \
     maincontent/controlwidget/cylindercontrol/cylinderwidget.h \
     maincontent/controlwidget/progresscontrol/progresswidget.h \
@@ -68,12 +84,28 @@ HEADERS  += mainwindow.h \
     maincontent/controlwidget/tablecontrol/tablewidget.h \
     numberanimation/numberanimation.h \
     maincontent/controlwidget/slidercontrol/slidercontrol.h \
-    maincontent/controlwidget/slidercontrol/sliderwidget.h
+    maincontent/controlwidget/slidercontrol/sliderwidget.h \
+    maincontent/controlwidget/openglcontrol/cameralibrary.h \
+    maincontent/controlwidget/openglcontrol/objectfactory.h \
+    maincontent/controlwidget/openglcontrol/opengldef.h \
+    maincontent/controlwidget/openglcontrol/shaderlibrary.h \
+    maincontent/controlwidget/openglcontrol/texturelibrary.h \
+    maincontent/controlwidget/openglcontrol/objectmodel/objectparent.h \
+    maincontent/controlwidget/openglcontrol/objectmodel/objectcube.h \
+    maincontent/controlwidget/openglcontrol/openglcontrol.h \
+    maincontent/controlwidget/openglcontrol/openglwidget.h \
+    maincontent/controlwidget/processcontrol/processcontrol.h \
+    maincontent/controlwidget/processcontrol/processwidget.h \
+    maincontent/controlwidget/listcontrol/listcontrol.h \
+    maincontent/controlwidget/listcontrol/listwidget.h \
+    screen/mainobject.h \
+    screen/splashscreen.h
+
 
 FORMS    += mainwindow.ui \
     titlebar/maintitlebar.ui \
-    maincontent/controltreewidget.ui \
     maincontent/controltabwidget.ui \
+    maincontent/controltreewidget.ui \
     maincontent/controlwidget/cylindercontrol/cylinderwidget.ui \
     maincontent/controlwidget/progresscontrol/progresswidget.ui \
     maincontent/controlwidget/progresscontrol/progresscontrol.ui \
@@ -88,9 +120,16 @@ FORMS    += mainwindow.ui \
     maincontent/controlwidget/tablecontrol/tablecontrol.ui \
     maincontent/controlwidget/tablecontrol/tablewidget.ui \
     maincontent/controlwidget/slidercontrol/slidercontrol.ui \
-    maincontent/controlwidget/slidercontrol/sliderwidget.ui
+    maincontent/controlwidget/slidercontrol/sliderwidget.ui \
+    maincontent/controlwidget/openglcontrol/openglwidget.ui \
+    maincontent/controlwidget/processcontrol/processcontrol.ui \
+    maincontent/controlwidget/processcontrol/processwidget.ui \
+    maincontent/controlwidget/listcontrol/listcontrol.ui \
+    maincontent/controlwidget/listcontrol/listwidget.ui
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    res/shaders.qrc \
+    res/textures.qrc
 
 RC_FILE += myapp.rc
